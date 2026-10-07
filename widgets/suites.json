@@ -1,0 +1,1 @@
+{"total":2,"items":[{"uid":"844b6fd71502ad5ef5b9e975dd75a2a1","name":"Home Page - Smoke @smoke","statistic":{"failed":0,"broken":0,"skipped":0,"passed":2,"unknown":0,"total":2}},{"uid":"5266bdae2bd63913d53f7f56d8df03a3","name":"Navigation - Regression @regression","statistic":{"failed":0,"broken":0,"skipped":0,"passed":2,"unknown":0,"total":2}}]}
