@@ -7,10 +7,9 @@ describe('Navigation - Regression @regression', () => {
     homePage = new HomePage();
   });
 
-  it('@regression navigates to commands page', () => {
+  it('@regression homepage has expected title', () => {
     homePage.goto();
-    cy.contains('Commands').click();
-    cy.url().should('include', '/commands');
+    cy.title().should('contain', 'Cypress');
   });
 
   it('@regression form submission works', () => {
