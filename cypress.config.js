@@ -1,5 +1,6 @@
 import { defineConfig } from 'cypress';
 import { allureCypress } from 'allure-cypress/reporter';
+import cypressGrep from '@cypress/grep/src/plugin.js';
 
 export default defineConfig({
   e2e: {
@@ -17,7 +18,7 @@ export default defineConfig({
         resultsDir: 'allure-results',
       });
 
-      require('@cypress/grep/src/plugin')(config);
+      cypressGrep(config);
       return config;
     },
   },
