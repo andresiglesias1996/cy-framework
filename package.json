@@ -5,8 +5,8 @@
   "scripts": {
     "cy:open": "cypress open",
     "cy:run": "cypress run",
-    "cy:smoke": "cypress run --env grep=@smoke",
-    "cy:regression": "cypress run --env grep=@regression",
+    "cy:smoke": "cypress run --spec 'cypress/e2e/smoke/**/*.cy.js'",
+    "cy:regression": "cypress run --spec 'cypress/e2e/regression/**/*.cy.js'",
     "allure:generate": "allure generate allure-results --clean -o allure-report",
     "allure:open": "allure open allure-report",
     "allure:serve": "allure serve allure-results"
