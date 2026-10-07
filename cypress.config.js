@@ -1,7 +1,7 @@
-const { defineConfig } = require('cypress');
-const { allureCypress } = require('allure-cypress/reporter');
+import { defineConfig } from 'cypress';
+import { allureCypress } from 'allure-cypress/reporter';
 
-module.exports = defineConfig({
+export default defineConfig({
   e2e: {
     baseUrl: process.env.BASE_URL || 'https://example.cypress.io',
     viewportWidth: 1280,
