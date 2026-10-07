@@ -1,3 +1,59 @@
+# AGENTS.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Commands
+
+```bash
+npm install              # Install dependencies
+
+npm run cy:open          # Open Cypress interactive UI
+npm run cy:run           # Run all tests headlessly
+npm run cy:smoke         # Run smoke suite only
+npm run cy:regression    # Run regression suite only
+
+# Run a single spec
+npx cypress run --spec 'cypress/e2e/smoke/home.smoke.cy.js'
+
+# Run by tag (via @cypress/grep)
+npx cypress run --env grep=@smoke
+
+# Allure reporting
+npm run cy:run && npm run allure:serve
+```
+
+Set `BASE_URL` env var to override the default target (`https://example.cypress.io`).
+
+## Architecture
+
+**Page Object Model** — all page interactions live in `cypress/pages/`. `BasePage.js` is the base class with shared helpers (`getByDataCy`, `getByRole`, `visit`). Page classes extend it.
+
+**Selectors** — the convention is `data-cy` attributes. Use `cy.getByDataCy('selector')` (custom command) or `BasePage#getByDataCy` in page objects, not raw `cy.get('.class')`.
+
+**Custom commands** (`cypress/support/commands.js`):
+- `cy.login(email, password)` — session-cached login via `/login` form
+- `cy.getByDataCy(selector)` — shorthand for `data-cy` selector
+- `cy.assertPageTitle(text)` — assert page title includes text
+
+**Test suites** — `cypress/e2e/smoke/` for critical path tests tagged `@smoke`; `cypress/e2e/regression/` for full regression tagged `@regression`. CI runs smoke first, then regression (always, even on smoke failure).
+
+**Allure** — configured via `allure-cypress` in `cypress.config.js`. Results land in `allure-results/`; report in `allure-report/`. CI publishes the report to GitHub Pages on every run.
+
+**CI** — `.github/workflows/ci.yml` triggers on push/PR to `main`/`develop`. Smoke → regression → Allure generate → deploy to `gh-pages` branch.
+
+## Commit conventions
+
+```
+feat:  nueva funcionalidad
+fix:   corrección de bug
+test:  añadir o modificar tests
+ci:    cambios en pipeline
+docs:  documentación
+chore: mantenimiento
+```
+
+---
+
 # AI Agents — cy-framework
 
 Guía de uso de agentes de IA con Cypress 16.x.

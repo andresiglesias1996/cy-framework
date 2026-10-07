@@ -14,8 +14,7 @@ describe('Navigation - Regression @regression', () => {
 
   it('@regression form submission works', () => {
     cy.visit('/commands/actions');
-    cy.get('.action-email')
-      .type('test@example.com')
-      .should('have.value', 'test@example.com');
+    cy.get('.action-email').type('test@example.com');
+    cy.get('.action-email').should('have.value', 'test@example.com');
   });
 });
